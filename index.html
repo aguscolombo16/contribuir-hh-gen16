@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Con Tribu Ir</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo" onclick="scrollToSection('inicio')">
+                    <span>🐜</span>
+                    <span>Con Tribu Ir</span>
+                </div>
+
+                <nav id="nav-desktop" class="nav-desktop">
+                    <a onclick="scrollToSection('nosotros')" class="nav-link">Nosotros</a>
+                    <a onclick="scrollToSection('cursos')" class="nav-link">Cursos</a>
+                    <a onclick="scrollToSection('contacto')" class="nav-link">Contacto</a>
+                </nav>
+
+                <div class="header-buttons">
+                <button class="btn btn-secondary" id="loginBtn" onclick="openModal('loginModal')">
+                    Iniciar Sesión
+                </button>
+                <button class="btn btn-primary" id="registerBtn" onclick="openModal('registerModal')">
+                    Unirse
+                </button>
+                <div id="userSection" class="user-section hidden">
+                    <span id="userName" class="user-name"></span>
+                    <button class="btn btn-secondary" onclick="goToMyCourses()" style="margin-left: 0.5rem;">
+                        📚 Mis Cursos
+                    </button>
+                    <button class="btn btn-secondary" onclick="logout()" style="margin-left: 0.5rem;">
+                        Salir
+                    </button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge">
+                        ⭐ Certificado ATE - Educación Transformadora
+                    </div>
+
+                    <h1>Transforma el futuro con <span class="gradient-text">educación consciente</span></h1>
+
+                    <p class="hero-description">
+                        Impulsa procesos educativos, socioemocionales y culturales que promuevan el bienestar, 
+                        la inclusión y el crecimiento personal a través de experiencias virtuales transformadoras.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <button class="btn-large btn-large-primary" onclick="scrollToSection('cursos')">
+                            Explorar Cursos 📚
+                        </button>
+                        <button class="btn-large btn-large-secondary" onclick="scrollToSection('nosotros')">
+                            Conocer Nuestra Misión ❤️
+                        </button>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-value">500+</div>
+                            <div class="stat-label">Educadores</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">50+</div>
+                            <div class="stat-label">Cursos</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">95%</div>
+                            <div class="stat-label">Transformación</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-card">
+                    <div class="card-header">
+                        <div class="card-icon">🌍</div>
+                        <div>
+                            <div class="card-title">Aprendizaje Virtual</div>
+                            <div class="card-subtitle">Plataforma innovadora</div>
+                        </div>
+                    </div>
+
+                    <div class="card-progress">
+                        <div class="progress-label">
+                            <span>Progreso de transformación</span>
+                            <span class="progress-value">85%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <span>👥 Únete a nuestra comunidad educativa</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-about" id="nosotros">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Quiénes Somos</h2>
+                <p class="section-description">
+                    Somos una organización comprometida con la transformación educativa y social, 
+                    trabajando como hormigas para construir comunidades más conscientes y resilientes.
+                </p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?w=600&h=400&fit=crop" alt="Comunidad educativa">
+                </div>
+                <div class="about-text">
+                    <h3>@ong.contribuir</h3>
+                    <p>
+                        Con Tribu Ir nace desde la necesidad de crear espacios educativos que verdaderamente 
+                        transformen vidas. Como las hormigas, trabajamos en comunidad, cada uno aportando 
+                        sus fortalezas para construir algo más grande que nosotros mismos.
+                    </p>
+                    <p>
+                        Nuestro enfoque se centra en el desarrollo integral de las personas, 
+                        promoviendo el bienestar socioemocional, la inclusión y el crecimiento personal 
+                        a través de metodologías innovadoras y experiencias transformadoras.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-mission" id="mision">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Misión</h2>
+            </div>
+
+            <div class="mission-content">
+                <div class="mission-emoji">🌱</div>
+                <p class="mission-text">
+                    Impulsar procesos educativos, socioemocionales y culturales que promuevan el 
+                    <span class="highlight highlight-primary">bienestar, la inclusión y el crecimiento personal y colectivo</span>, 
+                    a través de experiencias en establecimientos, programas, cursos, diplomados y formaciones 
+                    <span class="highlight highlight-secondary">accesibles y de calidad</span>, 
+                    que dejen huella en las personas y en sus comunidades.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-vision" id="vision">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Visión</h2>
+            </div>
+
+            <div class="vision-content">
+                <div class="vision-emoji">🌍</div>
+                <p class="vision-text">
+                    Ser un <span class="highlight highlight-secondary">referente nacional e internacional</span> en 
+                    educación y transformación social, reconocidos por nuestro 
+                    <span class="highlight highlight-primary">compromiso humano, nuestro enfoque innovador</span> y 
+                    nuestra capacidad de construir <span class="highlight highlight-secondary">comunidades más conscientes, 
+                    inclusivas y resilientes</span>, donde cada persona encuentre herramientas para desarrollar su 
+                    potencial y contribuir al bien común.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-courses" id="cursos">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nuestros Cursos</h2>
+                <p class="section-description">
+                    Programas diseñados para transformar tu práctica educativa y potenciar tu crecimiento personal.
+                </p>
+            </div>
+
+            <div class="filters">
+                <div class="search-box">
+                    <input type="text" id="searchCourses" class="search-input" placeholder="Buscar cursos..." onkeyup="filterCourses()">
+                </div>
+                <div class="category-filters" id="categoryFilters"></div>
+            </div>
+
+            <div class="courses-grid" id="coursesGrid"></div>
+        </div>
+    </section>
+
+    <section class="section section-contact" id="contacto">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contacto</h2>
+                <p class="section-description">
+                    ¿Tienes una pregunta o quieres ser parte de nuestra comunidad educativa? Nos encantaría escucharte.
+                </p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-info">
+                        <div class="contact-title">Síguenos</div>
+                        <div class="contact-text">@ong.contribuir</div>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <div class="contact-info">
+                        <div class="contact-title">Email</div>
+                        <div class="contact-text">contacto@contribuir.org</div>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">🌐</div>
+                    <div class="contact-info">
+                        <div class="contact-title">Misión Global</div>
+                        <div class="contact-text">Transformación educativa</div>
+                    </div>
+                </div>
+
+                <form class="contact-form" onsubmit="sendMessage(event)">
+                    <h3>Envíanos un mensaje</h3>
+                    <div class="form-group">
+                        <input type="text" class="form-input" placeholder="Tu nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-input" placeholder="Tu email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-textarea" placeholder="Tu mensaje..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('loginModal')">&times;</span>
+            <form id="loginForm">
+                <h3>Iniciar Sesión</h3>
+                <div class="form-group">
+                    <input type="email" id="loginEmail" name="email" class="form-input" placeholder="Tu email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="loginPassword" name="password" class="form-input" placeholder="Tu contraseña" required>
+                </div>
+                <button type="submit" class="btn-submit">Ingresar</button>
+                <p class="modal-switch">¿No tienes cuenta? <a onclick="switchToModal('loginModal', 'registerModal')">Regístrate aquí</a></p>
+            </form>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('registerModal')">&times;</span>
+            <form id="registerForm">
+                <h3>Crear una Cuenta</h3>
+                
+                <div class="form-group">
+                    <input type="text" 
+                           id="registerName" 
+                           name="name" 
+                           class="form-input" 
+                           placeholder="Tu nombre" 
+                           required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="email" 
+                           id="registerEmail" 
+                           name="email" 
+                           class="form-input" 
+                           placeholder="Tu email" 
+                           required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" 
+                           id="registerPassword" 
+                           name="password" 
+                           class="form-input" 
+                           placeholder="Crea una contraseña" 
+                           required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" 
+                           id="registerConfirmPassword" 
+                           name="confirmPassword" 
+                           class="form-input" 
+                           placeholder="Confirma tu contraseña" 
+                           required>
+                </div>
+                
+                <button type="submit" class="btn-submit">Registrarse</button>
+                
+                <p class="modal-switch">
+                    ¿Ya tienes cuenta? 
+                    <a onclick="switchToModal('registerModal', 'loginModal')">Inicia sesión</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span>🐜</span>
+                    <span class="footer-logo-text">Con Tribu Ir</span>
+                </div>
+                <div class="footer-social">
+                    <span>📱 @ong.contribuir</span>
+                </div>
+                <p class="footer-description">
+                    Transformando el mundo a través de la educación consciente.
+                </p>
+                <div class="footer-copyright">
+                    © 2025 Con Tribu Ir • Organización para la Transformación Educativa
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

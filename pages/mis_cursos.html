@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Cursos - Con Tribu Ir</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-bottom: 1rem;
+            padding: 0.5rem 1rem;
+            background: #f0f0f0;
+            color: #333;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: #e0e0e0;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            border-bottom: 2px solid #eee;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .tab-btn:hover {
+            color: #667eea;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .course-body {
+            padding: 1.5rem;
+        }
+
+        .course-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .course-title {
+            color: #333;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            flex: 1;
+        }
+
+        .course-instructor {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .progress-section {
+            margin: 1rem 0;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #eee;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .course-stats {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #666;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .course-actions {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            background: white;
+            border-radius: 12px;
+            color: #666;
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .empty-state h2 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state p {
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-explore {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: #e3f2fd;
+            color: #1976d2;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge.completed {
+            background: #c8e6c9;
+            color: #2e7d32;
+        }
+
+        @media (max-width: 768px) {
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tabs {
+                flex-wrap: wrap;
+            }
+
+            body {
+                padding: 1rem;
+            }
+
+            .header {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-button">← Volver al inicio</a>
+
+        <div class="header">
+            <h1>📚 Mis Cursos</h1>
+            <p>Gestiona tus inscripciones y continúa aprendiendo</p>
+            <div class="tabs">
+                <button class="tab-btn active" onclick="filterCourses('activos', this)">En Progreso</button>
+                <button class="tab-btn" onclick="filterCourses('completados', this)">Completados</button>
+                <button class="tab-btn" onclick="filterCourses('todos', this)">Todos</button>
+            </div>
+        </div>
+
+        <div id="coursesContainer" class="courses-grid">
+            <div class="loading">
+                <p>⏳ Cargando tus cursos...</p>
+            </div>
+        </div>
+
+        <div id="emptyState" class="empty-state" style="display: none;">
+            <div class="empty-state-icon">📖</div>
+            <h2>No tienes cursos aún</h2>
+            <p>Comienza tu viaje de aprendizaje hoy mismo</p>
+            <a href="../index.html#cursos" class="btn-explore">Explorar Cursos</a>
+        </div>
+    </div>
+
+    <script>
+        let allEnrollments = [];
+        let currentFilter = 'activos';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadEnrollments();
+        });
+
+        async function loadEnrollments() {
+            let sessionResponse, enrollmentsResponse;
+            
+            try {
+                // Primero verificamos si hay sesión activa
+                sessionResponse = await fetch('../api/check_session.php', {
+                    credentials: 'same-origin' // Importante: enviar cookies
+                });
+                
+                if (!sessionResponse.ok) {
+                    const errorText = await sessionResponse.text();
+                    console.error('Error de sesión:', {
+                        status: sessionResponse.status,
+                        statusText: sessionResponse.statusText,
+                        response: errorText
+                    });
+                    throw new Error('No autenticado');
+                }
+
+                // Si hay sesión, cargamos los cursos
+                enrollmentsResponse = await fetch('../api/get_enrollments.php', {
+                    credentials: 'same-origin' // Importante: enviar cookies
+                });
+                
+                if (!enrollmentsResponse.ok) {
+                    const errorText = await enrollmentsResponse.text();
+                    console.error('Error al cargar cursos:', {
+                        status: enrollmentsResponse.status,
+                        statusText: enrollmentsResponse.statusText,
+                        response: errorText
+                    });
+                    throw new Error('Error al cargar cursos');
+                }
+
+                allEnrollments = await enrollmentsResponse.json();
+                filterCourses('activos');
+            } catch (error) {
+                console.error('Error en la carga:', {
+                    error: error.message,
+                    sessionStatus: sessionResponse ? sessionResponse.status : 'No disponible',
+                    enrollmentsStatus: enrollmentsResponse ? enrollmentsResponse.status : 'No disponible'
+                });
+
+                document.getElementById('coursesContainer').innerHTML = '';
+                
+                // Personalizar el mensaje según el tipo de error
+                let errorMessage = 'Hubo un problema al cargar tus cursos.';
+                let actionMessage = 'Por favor, inicia sesión nuevamente.';
+                
+                if (!sessionResponse || sessionResponse.status === 401) {
+                    errorMessage = 'Necesitas iniciar sesión para ver tus cursos.';
+                    actionMessage = 'Haz clic en el botón para iniciar sesión.';
+                } else if (enrollmentsResponse && enrollmentsResponse.status === 500) {
+                    errorMessage = 'Error en el servidor al cargar los cursos.';
+                    actionMessage = 'Por favor, intenta de nuevo más tarde.';
+                }
+
+                document.getElementById('emptyState').innerHTML = `
+                    <div class="empty-state-icon">⚠️</div>
+                    <h2>${errorMessage}</h2>
+                    <p>${actionMessage}</p>
+                    <a href="../index.html" class="btn-explore">Ir al inicio</a>
+                `;
+                document.getElementById('emptyState').style.display = 'block';
+            }
+        }
+
+        function filterCourses(filter, buttonElement) {
+            currentFilter = filter;
+            
+            // Actualizar botones activos
+            if (buttonElement) {
+                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                buttonElement.classList.add('active');
+            }
+
+            let filtered = [];
+            
+            if (filter === 'activos') {
+                filtered = allEnrollments.filter(e => e.progress < 100);
+            } else if (filter === 'completados') {
+                filtered = allEnrollments.filter(e => e.progress === 100);
+            } else {
+                filtered = allEnrollments;
+            }
+
+            displayCourses(filtered);
+        }
+
+        function displayCourses(courses) {
+            const container = document.getElementById('coursesContainer');
+            const emptyState = document.getElementById('emptyState');
+
+            if (courses.length === 0) {
+                container.style.display = 'none';
+                emptyState.style.display = 'block';
+                return;
+            }
+
+            container.style.display = 'grid';
+            emptyState.style.display = 'none';
+
+            container.innerHTML = courses.map(course => `
+                <div class="course-card">
+                    <img src="${course.image}" alt="${course.title}" class="course-image" onerror="this.src='https://via.placeholder.com/600x400?text=${encodeURIComponent(course.title)}'">
+                    <div class="course-body">
+                        <div class="course-header">
+                            <div>
+                                <h3 class="course-title">${course.title}</h3>
+                                <p class="course-instructor">por ${course.instructor}</p>
+                            </div>
+                            ${course.progress === 100 ? '<span class="badge completed">✓ Completado</span>' : ''}
+                        </div>
+
+                        <div class="progress-section">
+                            <div class="progress-label">
+                                <span>Progreso</span>
+                                <span>${course.progress}%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${course.progress}%"></div>
+                            </div>
+                        </div>
+
+                        <div class="course-stats">
+                            <div class="stat-item">
+                                <span>📅</span>
+                                <span>${course.enrolledDate}</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>⏱️</span>
+                                <span>${course.hoursCompleted}h${course.totalHours ? '/' + course.totalHours + 'h' : ''}</span>
+                            </div>
+                        </div>
+
+                        <div class="course-actions">
+                            <button class="btn btn-primary" onclick="continueCourse(${course.enrollmentId})">
+                                ${course.progress === 100 ? 'Revisar' : 'Continuar'} →
+                            </button>
+                            <button class="btn btn-secondary" onclick="viewDetails(${course.id})">
+                                Detalles
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function continueCourse(enrollmentId) {
+            alert(`🎓 Abriendo lección del curso ${enrollmentId}\n\nProximamente: Panel de lecciones disponible`);
+            // Aquí irías a la página del curso cuando esté lista
+            // window.location.href = `/course/${enrollmentId}`;
+        }
+
+        function viewDetails(courseId) {
+            alert(`📋 Detalles del curso ${courseId}\n\nProximamente: Vista detallada disponible`);
+            // Aquí irías a la página de detalles
+            // window.location.href = `/#curso-${courseId}`;
+        }
+    </script>
+</body>
+</html>
