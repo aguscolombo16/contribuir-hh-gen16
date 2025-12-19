@@ -428,25 +428,25 @@ body {
 }
 
 /* Responsivo */
-@media (max-width: 768px) {
-    .faq-panel {
-        width: calc(100vw - 40px);
-        left: 20px;
-        right: 20px;
-        margin: 0 auto;
-    }
-    
+@media (max-width: 968px) {
     .faq-floating {
         bottom: 20px;
-        right: 20px;
-        
+        right: 20px;     /* ← Pegadito en móvil también */
     }
+}
+    .faq-floating {
+    .faq-floating {
+    position: fixed;     /* ← Fixed para que quede en la ventana */
+    bottom: 40px;
+    right: 30px;         /* ← Distancia del borde derecho de la pantalla (ajustá si querés más pegado: right: 20px o 15px) */
+    z-index: 1000;
+}
+}
     
     .faq-button {
         width: 58px;
         height: 58px;
         font-size: 19px;
-        font-size: 36px;  /* Más grande el "?" */
+        font-size: 36px;  
     font-weight: bold
     }
-}
