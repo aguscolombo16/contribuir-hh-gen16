@@ -427,18 +427,20 @@ body {
     display: block;
 }
 
-/* Responsivo */
+
+
+/* Boton de preguntas fre3cuentes*/
+/* respomnsivo */    
 @media (max-width: 968px) {
     .faq-floating {
         bottom: 20px;
-        right: 20px;     /* ← Pegadito en móvil también */
+        right: 20px;     
     }
 }
     .faq-floating {
     .faq-floating {
-    position: fixed;     /* ← Fixed para que quede en la ventana */
-    bottom: 40px;
-    right: 30px;         /* ← Distancia del borde derecho de la pantalla (ajustá si querés más pegado: right: 20px o 15px) */
+    position: fixed;    
+    right: 30px;         
     z-index: 1000;
 }
 }
@@ -450,3 +452,4 @@ body {
         font-size: 36px;  
     font-weight: bold
     }
+
